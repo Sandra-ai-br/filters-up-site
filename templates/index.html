@@ -1,0 +1,39 @@
+templates/index.html
+<h1>FILTERS UP</h1>
+<p class="slogan">O filtro GEMINI para decolar sua startup</p>
+<form method="POST">
+    <label>Idade: <input type="number" name="idade" required></label><br>
+    <label>Gênero:
+        <select name="genero" id="genero" onchange="mostrarOutroGenero(this.value)">
+            <option value="Feminino">Feminino</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Outro">Outro</option>
+        </select>
+    </label><br>
+    <div id="genero_outro_div" style="display:none;">
+        <label>Especifique: <input type="text" name="genero_outro"></label><br>
+    </div>
+    <label>Tipo de Startup:
+        <select name="tipo">
+            <option>Ideação</option>
+            <option>Validação</option>
+            <option>Pré-semente</option>
+            <option>Semente</option>
+            <option>Série A</option>
+            <option>Série B</option>
+            <option>Empresa estabelecida</option>
+        </select>
+    </label><br>
+    <label>Continente:
+        <select name="continente">
+            <option>América do Sul</option>
+            <option>Europa</option>
+            <option>África</option>
+            <option>Ásia</option>
+            <option>América do Norte</option>
+            <option>Oceania</option>
+        </select>
+    </label><br>
+    <label>País: <input type="text" name="pais" value="Brasil"></label><br>
+    <button type="submit">Buscar</button>
+</form>
