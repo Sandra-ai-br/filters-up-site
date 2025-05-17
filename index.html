@@ -1,1 +1,69 @@
-...
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>FILTERS UP</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>FILTERS UP 🚀</h1>
+    <p class="slogan">O filtro GEMINI para decolar sua startup</p>
+
+    <form method="POST">
+        <label>Idade: <input type="number" name="idade" required></label><br>
+        <label>Gênero:
+            <select name="genero" id="genero" onchange="mostrarOutroGenero(this.value)">
+                <option value="Feminino">Feminino</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Outro">Outro</option>
+            </select>
+        </label><br>
+        <div id="genero_outro_div" style="display:none;">
+            <label>Especifique: <input type="text" name="genero_outro"></label><br>
+        </div>
+        <label>Tipo de Startup:
+            <select name="tipo">
+                <option>Ideação</option>
+                <option>Validação</option>
+                <option>Pré-semente</option>
+                <option>Semente</option>
+                <option>Série A</option>
+                <option>Série B</option>
+                <option>Empresa estabelecida</option>
+            </select>
+        </label><br>
+        <label>Continente:
+            <select name="continente">
+                <option>América do Sul</option>
+                <option>Europa</option>
+                <option>África</option>
+                <option>Ásia</option>
+                <option>América do Norte</option>
+                <option>Oceania</option>
+            </select>
+        </label><br>
+        <label>País: <input type="text" name="pais" value="Brasil"></label><br>
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if resultados %}
+        <h2>🎯 Editais Encontrados:</h2>
+        <ul>
+            {% for edital in resultados %}
+                <li><strong>{{ edital.nome }}</strong> – {{ edital.pais }} (até {{ edital.data_limite }})</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if resposta_ia %}
+        <h3>🤖 Agente IA:</h3>
+        <p>{{ resposta_ia }}</p>
+    {% endif %}
+
+<script>
+function mostrarOutroGenero(valor) {
+    document.getElementById('genero_outro_div').style.display = valor === 'Outro' ? 'block' : 'none';
+}
+</script>
+</body>
+</html>
